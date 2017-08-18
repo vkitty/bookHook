@@ -10,11 +10,10 @@ module.exports = app => {
 
         * commit() {
             var gitDir = this.config.gitDir;
-            console.log(gitDir);
             var mySpawn = Spawn('git', ['pull'], {cwd: '/home/www/webserver/docs'});
-            yield this.app.spawnExec(mySpawn);
-            mySpawn = Spawn('gitbook', ['build'], {cwd: '/home/www/webserver/docs'});
-            yield this.app.spawnExec(mySpawn);
+            mySpawn.on('close',function(){
+                mySpawn = Spawn('gitbook', ['build'], {cwd: '/home/www/webserver/docs'});
+            })
             this.ctx.body = gitDir;
         }
     }
