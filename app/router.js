@@ -2,5 +2,5 @@
 
 module.exports = app => {
   app.get('/', 'home.index');
-  app.verb('/git/commit', 'git.commit');
+  app.post('/git/commit', 'git.commit');
 };
