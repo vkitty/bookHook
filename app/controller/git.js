@@ -8,12 +8,27 @@ module.exports = app => {
             this.ctx.body = 'hi, egg';
         }
 
-        * commit() {
-            var gitDir = this.config.gitDir;
-            var mySpawn = Spawn('git', ['pull'], {cwd: '/home/www/webserver/docs'});
+        * vkitty() {
+            var gitDir = this.config.vkittyDir;
+            var mySpawn = Spawn('git', ['pull'], {cwd: gitDir});
+            mySpawn.stderr.on('data',function(data){
+                console.log(data.toString());
+            });
             mySpawn.on('close',function(){
-                mySpawn = Spawn('gitbook', ['build'], {cwd: '/home/www/webserver/docs'});
-            })
+                mySpawn = Spawn('gitbook', ['build'], {cwd: gitDir});
+            });
+            this.ctx.body = gitDir;
+        }
+
+        * adbaitai() {
+            var gitDir = this.config.adbaitaiDir;
+            var mySpawn = Spawn('git', ['pull'], {cwd: gitDir});
+            mySpawn.stderr.on('data',function(data){
+                console.log(data.toString());
+            });
+            mySpawn.on('close',function(){
+                mySpawn = Spawn('gitbook', ['build'], {cwd: gitDir});
+            });
             this.ctx.body = gitDir;
         }
     }

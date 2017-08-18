@@ -5,7 +5,8 @@ module.exports = appInfo => {
 
   // should change to your own
   config.keys = appInfo.name + '_1503034349194_328';
-  config.gitDir="/home/www/webserver/docs";
+  config.vkittyDir="/home/www/webserver/docs";
+  config.adbaitaiDir="/home/www/webserver/adbaitai/front-docs";
 
   return config;
 };
