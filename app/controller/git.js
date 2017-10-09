@@ -33,8 +33,8 @@ module.exports = app => {
         }
 
 
-        * preadbaitai() {
-            var gitDir = this.config.preadbaitaiDir;
+        * frontdocs_adbaitai_com() {
+            var gitDir = this.config.frontdocs_adbaitai_com;
             var mySpawn = Spawn('git', ['pull'], {cwd: gitDir});
             mySpawn.stderr.on('data',function(data){
                 console.log(data.toString());
