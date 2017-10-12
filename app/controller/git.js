@@ -44,6 +44,18 @@ module.exports = app => {
             });
             this.ctx.body = gitDir;
         }
+
+        * frontdocs_adbaitai_com_docs() {
+            var gitDir = this.config.frontdocs_adbaitai_com;
+            var mySpawn = Spawn('git', ['pull'], {cwd: gitDir});
+            mySpawn.stderr.on('data',function(data){
+                console.log(data.toString());
+            });
+            mySpawn.on('close',function(){
+                mySpawn = Spawn('gitbook', ['build'], {cwd: gitDir});
+            });
+            this.ctx.body = gitDir;
+        }
     }
     return HomeController;
 };
